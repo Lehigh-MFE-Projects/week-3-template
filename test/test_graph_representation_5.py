@@ -1,12 +1,12 @@
 import subprocess
 import re
-from student_code import part_2_graph 
+import pytest
 
-node_dict={'a':0,'b':1,'c':2,'d':3,'e':4}
+@pytest.fixture
+def graph():
+    from student_graph import VersatileDigraph
+    return VersatileDigraph()
 
-# Test 5: Check part 2 graph
-def test_part_2():
-       graph=part_2_graph()
-       assert type(graph)==list
-       assert 'n' not in graph[node_dict['a']]
-       assert 'm' not in graph[node_dict['a']]
+def test_add_edge(graph):
+    graph.add_edge("A", "B", edge_name="edge1", edge_value=5)
+    assert graph.get_edge_wt("A", "B") == 5
