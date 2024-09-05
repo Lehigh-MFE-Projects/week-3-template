@@ -1,3 +1,10 @@
+import pytest
+
+@pytest.fixture
+def graph():
+    from student_graph import VersatileDigraph
+    return VersatileDigraph()
+
 def test_print_graph(graph, capsys):
     graph.add_node("A", 10)
     graph.add_edge("A", "B", edge_weight=5, edge_name="edge1")
