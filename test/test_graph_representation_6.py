@@ -1,13 +1,12 @@
-import subprocess
-import re
-from student_code import part_3_graph 
+import pytest
 
-node_dict={'a':0,'b':1,'c':2,'d':3,'e':4}
+@pytest.fixture
+def graph():
+    from student_graph import VersatileDigraph
+    return VersatileDigraph()
 
-# Test 3: Check for unhandled pylint style recommendations
-def test_part_3():
-       graph=part_3_graph()
-       assert type(graph)==list
-       assert 'b' in graph[node_dict['a']]
-       assert type(graph[node_dict['a']])==dict
-       assert graph[node_dict['a']]['b']==1
+def test_add_edge_with_new_nodes(graph):
+    graph.add_edge("A", "B", start_node_value=10, end_node_value=20, edge_name="edge1", edge_value=5)
+    assert graph.get_node_value("A") == 10
+    assert graph.get_node_value("B") == 20
+    assert graph.get_edge_wt("A", "B") == 5
