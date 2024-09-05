@@ -1,10 +1,11 @@
-import subprocess
-import re
-from student_code import part_5_graph 
+import pytest
 
-# Test 3: Check for unhandled pylint style recommendations
-def test_part_5():
-       graph=part_5_graph()
-       assert type(graph)==dict
-       assert type(graph['a'])==dict
-       assert graph['b']=={'e':3}
+@pytest.fixture
+def graph():
+    from student_graph import VersatileDigraph
+    return VersatileDigraph()
+
+def test_edge_name_uniqueness(graph):
+    graph.add_edge("A", "B", edge_name="edge1")
+    with pytest.raises(ValueError):
+        graph.add_edge("A", "C", edge_name="edge1")
