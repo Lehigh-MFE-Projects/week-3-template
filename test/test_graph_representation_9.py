@@ -1,12 +1,7 @@
-import subprocess
-import re
-from student_code import part_1_graph 
-
-node_dict={'a':0,'b':1,'c':2,'d':3,'e':4}
-
-# Test 9: Check part 1 graph
-def test_part_1():
-       graph=part_1_graph()
-       assert type(graph)==list
-       assert 't' not in graph[node_dict['a']]
-       assert 'q' not in graph[node_dict['d']]
+def test_print_graph(graph, capsys):
+    graph.add_node("A", 10)
+    graph.add_edge("A", "B", edge_weight=5, edge_name="edge1")
+    graph.print_graph()
+    captured = capsys.readouterr()
+    assert "Node A with value 10" in captured.out
+    assert "Edge from A to B with weight 5 and name edge1" in captured.out
