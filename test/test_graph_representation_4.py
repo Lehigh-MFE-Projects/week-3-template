@@ -1,12 +1,13 @@
 import subprocess
 import re
-from student_code import part_1_graph 
+import pytest
 
-node_dict={'a':0,'b':1,'c':2,'d':3,'e':4}
+@pytest.fixture
+def graph():
+    from student_graph import VersatileDigraph
+    return VersatileDigraph()
 
-# Test 4: Check part 1 graph
-def test_part_1():
-       graph=part_1_graph()
-       assert type(graph)==list
-       assert 'b' in graph[node_dict['a']]
-       assert 'c' not in graph[node_dict['d']]
+def test_add_node(graph):
+'''Test adding node'''
+    graph.add_node("A", 10)
+    assert graph.get_node_value("A") == 10
