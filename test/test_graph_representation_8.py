@@ -2,7 +2,7 @@ import pytest
 
 @pytest.fixture
 def graph():
-    from student_graph import VersatileDigraph
+    from student_code import VersatileDigraph
     return VersatileDigraph()
 
 def test_edge_name_uniqueness(graph):

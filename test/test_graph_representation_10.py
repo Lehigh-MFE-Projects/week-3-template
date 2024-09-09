@@ -1,8 +1,9 @@
 import pytest
+import time
 
 @pytest.fixture
 def graph():
-    from student_graph import VersatileDigraph
+    from student_code import VersatileDigraph
     return VersatileDigraph()
 
 def test_performance_add_edge(graph):
