@@ -12,6 +12,11 @@ class VersatileDigraph:
             self.add_node(start_node_id, start_node_value)
         if end_node_id not in self.nodes:
             self.add_node(end_node_id, end_node_value)
+        if start_node_id not in self.edges:
+            self.edges[start_node_id] = {}
+
+        if edge_name is None:
+            edge_name = f"{start_node_id}->{end_node_id}"
         self.edges[start_node_id][edge_name] = (end_node_id, edge_weight)
     def get_nodes(self):
         """Return a list of nodes in the graph."""
@@ -33,7 +38,8 @@ class VersatileDigraph:
             for edge_name, (dest, weight) in self.edges[start_node].items():
                 if dest == end_node:
                     return weight
-    
+        return None
+
     def print_graph(self):
         """Print the graph as a output."""
         for node_id, node_value in self.nodes.items():
