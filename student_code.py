@@ -1,4 +1,6 @@
-
+"""
+This module provides VersatileDigraph representing different types of graph structures.
+"""
 class VersatileDigraph:
     '''Class for versatile digraph implementation'''
     def __init__(self):
