@@ -19,6 +19,10 @@ class VersatileDigraph:
 
         if edge_name is None:
             edge_name = f"{start_node_id}->{end_node_id}"
+
+        # Check if the edge name already exists for the given start node
+        if edge_name in self.edges[start_node_id]:
+            raise ValueError(f"Edge name '{edge_name}' already exists for node '{start_node_id}'")
         self.edges[start_node_id][edge_name] = (end_node_id, edge_weight)
     def get_nodes(self):
         """Return a list of nodes in the graph."""
@@ -46,3 +50,6 @@ class VersatileDigraph:
         """Print the graph as a output."""
         for node_id, node_value in self.nodes.items():
             print(f"Node {node_id} with value {node_value}")
+        for start_node, edges in self.edges.items():
+            for edge_name, (end_node, weight) in edges.items():
+                print(f"Edge from {start_node} to {end_node} with weight {weight} and name {edge_name}")
