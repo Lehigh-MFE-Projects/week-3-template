@@ -45,5 +45,6 @@ class VersatileDigraph:
         for node_id, node_value in self.nodes.items():
             print(f"Node {node_id} with value {node_value}")
         for start_node, edges in self.edges.items():
+            
             for edge_name, (end_node, weight) in edges.items():
                 print(f"Edge from {start_node} to {end_node} with weight {weight} and name {edge_name}")
